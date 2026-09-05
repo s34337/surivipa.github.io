@@ -9,9 +9,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>My Portfolio - Surivipa Padthong</title>
+    <title>My Portfolio | Surivipa Padthong</title>
 
-    <!-- Google Font -->
+    <!-- ฟอนต์ -->
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -19,14 +19,14 @@
           href="https://fonts.gstatic.com"
           crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Kanit:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Itim&display=swap"
           rel="stylesheet">
 
 
 <style>
 
 /* =====================================================
-   BASIC
+   RESET
 ===================================================== */
 
 * {
@@ -49,12 +49,12 @@ body {
 
     color: #FFFFFF;
 
-    background-color: #EBA7B1;
+    background: #EBA7B1;
 }
 
 
 /* =====================================================
-   CHECKERBOARD BACKGROUND
+   พื้นหลังตารางหมากรุก
 ===================================================== */
 
 .background {
@@ -68,42 +68,45 @@ body {
     background-color: #EBA7B1;
 
     background-image:
+
         linear-gradient(
             45deg,
             #FFFFFF 25%,
             transparent 25%
         ),
+
         linear-gradient(
             -45deg,
             #FFFFFF 25%,
             transparent 25%
         ),
+
         linear-gradient(
             45deg,
             transparent 75%,
             #FFFFFF 75%
         ),
+
         linear-gradient(
             -45deg,
             transparent 75%,
             #FFFFFF 75%
         );
 
-    background-size: 90px 90px;
+    background-size: 100px 100px;
 
     background-position:
-        0 0,
-        0 45px,
-        45px -45px,
-        -45px 0;
 
-    opacity: 0.8;
+        0 0,
+        0 50px,
+        50px -50px,
+        -50px 0;
+
+    opacity: 0.65;
 }
 
 
-/* =====================================================
-   PINK OVERLAY
-===================================================== */
+/* ทำให้ตารางดูนุ่มขึ้น */
 
 .background::after {
 
@@ -114,17 +117,13 @@ body {
     inset: 0;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(235,167,177,0.80),
-            rgba(235,167,177,0.92)
-        );
+        rgba(235,167,177,0.58);
 
 }
 
 
 /* =====================================================
-   FLOATING HEARTS
+   หัวใจที่พื้นหลัง
 ===================================================== */
 
 .heart {
@@ -135,105 +134,73 @@ body {
 
     opacity: 0.35;
 
-    font-size: 30px;
-
     z-index: -5;
 
     pointer-events: none;
 
     animation:
-        heartFloat 10s linear infinite;
+        floatingHeart 12s linear infinite;
 }
 
+
+/* หัวใจแต่ละดวง */
 
 .heart:nth-child(1) {
-
     left: 5%;
-    bottom: -50px;
-
-    font-size: 30px;
-
-    animation-duration: 9s;
+    bottom: -60px;
+    font-size: 35px;
+    animation-duration: 10s;
 }
 
-
 .heart:nth-child(2) {
-
     left: 18%;
-    bottom: -60px;
-
-    font-size: 55px;
-
-    animation-duration: 13s;
-
+    bottom: -70px;
+    font-size: 60px;
+    animation-duration: 14s;
     animation-delay: 2s;
 }
 
-
 .heart:nth-child(3) {
-
-    left: 35%;
+    left: 32%;
     bottom: -50px;
-
-    font-size: 25px;
-
-    animation-duration: 8s;
-
+    font-size: 28px;
+    animation-duration: 9s;
     animation-delay: 1s;
 }
 
-
 .heart:nth-child(4) {
-
-    left: 50%;
-    bottom: -70px;
-
+    left: 48%;
+    bottom: -80px;
     font-size: 70px;
-
-    animation-duration: 15s;
-
+    animation-duration: 16s;
     animation-delay: 4s;
 }
 
-
 .heart:nth-child(5) {
-
-    left: 67%;
-    bottom: -50px;
-
-    font-size: 40px;
-
-    animation-duration: 11s;
-
-    animation-delay: 2s;
-}
-
-
-.heart:nth-child(6) {
-
-    left: 82%;
+    left: 65%;
     bottom: -60px;
-
-    font-size: 65px;
-
-    animation-duration: 14s;
-
+    font-size: 42px;
+    animation-duration: 11s;
     animation-delay: 3s;
 }
 
+.heart:nth-child(6) {
+    left: 80%;
+    bottom: -70px;
+    font-size: 58px;
+    animation-duration: 13s;
+    animation-delay: 2s;
+}
 
 .heart:nth-child(7) {
-
-    left: 94%;
+    left: 93%;
     bottom: -50px;
-
-    font-size: 30px;
-
+    font-size: 32px;
     animation-duration: 10s;
 }
 
 
-@keyframes heartFloat {
+@keyframes floatingHeart {
 
     0% {
 
@@ -248,13 +215,14 @@ body {
     10% {
 
         opacity: 0.35;
+
     }
 
     50% {
 
         transform:
             translateY(-50vh)
-            translateX(30px)
+            translateX(35px)
             rotate(15deg);
 
     }
@@ -269,32 +237,35 @@ body {
         opacity: 0;
 
     }
+
 }
 
 
 /* =====================================================
-   SHOOTING STAR
+   ดาวตก
 ===================================================== */
 
 .shooting-star {
 
     position: fixed;
 
-    top: -50px;
+    top: -80px;
 
-    left: -50px;
+    left: -80px;
 
-    width: 13px;
+    width: 15px;
 
-    height: 13px;
-
-    background: #FFFFFF;
+    height: 15px;
 
     border-radius: 50%;
 
+    background: #FFFFFF;
+
     box-shadow:
-        0 0 12px #FFFFFF,
-        0 0 25px #FFFFFF;
+
+        0 0 10px #FFFFFF,
+        0 0 25px #FFFFFF,
+        0 0 40px #FFFFFF;
 
     z-index: -3;
 
@@ -303,33 +274,37 @@ body {
 }
 
 
+/* หางดาวตก */
+
 .shooting-star::after {
 
     content: "";
 
     position: absolute;
 
-    width: 230px;
+    width: 270px;
 
-    height: 4px;
+    height: 5px;
 
-    top: 5px;
+    top: 6px;
 
     right: 5px;
 
     background:
+
         linear-gradient(
             90deg,
             transparent,
             #FF1493
         );
 
+    border-radius: 50%;
+
     transform:
         rotate(-45deg);
 
-    transform-origin: right center;
-
-    border-radius: 50%;
+    transform-origin:
+        right center;
 
     box-shadow:
         0 0 10px #FF1493;
@@ -337,12 +312,15 @@ body {
 }
 
 
+/* การเคลื่อนที่ดาวตก
+   จากบนซ้าย -> ล่างขวา */
+
 @keyframes shootingStar {
 
     0% {
 
         transform:
-            translate(-100px,-100px);
+            translate(-100px, -100px);
 
         opacity: 0;
 
@@ -357,7 +335,7 @@ body {
     45% {
 
         transform:
-            translate(55vw,55vh);
+            translate(55vw, 55vh);
 
         opacity: 1;
 
@@ -366,7 +344,7 @@ body {
     60% {
 
         transform:
-            translate(75vw,75vh);
+            translate(75vw, 75vh);
 
         opacity: 0;
 
@@ -375,11 +353,12 @@ body {
     100% {
 
         transform:
-            translate(100vw,100vh);
+            translate(110vw, 110vh);
 
         opacity: 0;
 
     }
+
 }
 
 
@@ -387,7 +366,7 @@ body {
 
 .shooting-star.second {
 
-    animation-delay: 3.5s;
+    animation-delay: 3s;
 
     animation-duration: 7s;
 
@@ -404,10 +383,10 @@ body {
 
     padding:
 
-        70px
+        60px
         180px
-        70px
-        50px;
+        60px
+        40px;
 
     display: none;
 
@@ -416,7 +395,7 @@ body {
     justify-content: center;
 
     animation:
-        pageAppear 0.6s ease;
+        pageAnimation 0.65s ease;
 
 }
 
@@ -428,7 +407,7 @@ body {
 }
 
 
-@keyframes pageAppear {
+@keyframes pageAnimation {
 
     from {
 
@@ -447,32 +426,31 @@ body {
             translateY(0);
 
     }
+
 }
 
 
 /* =====================================================
-   CONTENT
+   CONTENT CARD
 ===================================================== */
 
 .content {
 
-    width: min(1100px, 100%);
-
-    text-align: center;
+    width:
+        min(1100px, 100%);
 
     padding: 45px;
+
+    text-align: center;
 
     background:
         rgba(235,167,177,0.88);
 
     border:
-
-        3px solid
-        #FFFFFF;
+        3px solid #FFFFFF;
 
     border-radius:
-
-        35px;
+        30px;
 
     box-shadow:
 
@@ -480,13 +458,13 @@ body {
         rgba(160,50,90,0.25);
 
     backdrop-filter:
-        blur(7px);
+        blur(8px);
 
 }
 
 
 /* =====================================================
-   HEADINGS
+   หัวข้อ
 ===================================================== */
 
 h1 {
@@ -496,7 +474,7 @@ h1 {
     font-size:
 
         clamp(
-            48px,
+            52px,
             7vw,
             90px
         );
@@ -505,6 +483,8 @@ h1 {
 
     margin-bottom: 35px;
 
+    /* บังคับให้อยู่บรรทัดเดียว */
+
     white-space: nowrap;
 
     text-shadow:
@@ -512,8 +492,8 @@ h1 {
         3px 4px 0
         rgba(255,20,147,0.35),
 
-        0 5px 15px
-        rgba(150,50,90,0.2);
+        0 5px 20px
+        rgba(120,30,60,0.25);
 
 }
 
@@ -530,14 +510,14 @@ h2 {
             75px
         );
 
-    margin-bottom: 35px;
-
     font-weight: 700;
+
+    margin-bottom: 35px;
 
     text-shadow:
 
         3px 3px 0
-        rgba(255,20,147,0.30);
+        rgba(255,20,147,0.35);
 
 }
 
@@ -554,7 +534,7 @@ h3 {
 
 
 /* =====================================================
-   PROFILE IMAGE
+   รูปโปรไฟล์
 ===================================================== */
 
 .profile-image {
@@ -572,20 +552,18 @@ h3 {
     display: block;
 
     margin:
-
         0 auto 30px;
 
     border:
+        5px solid #FFFFFF;
 
-        5px solid
-        #FFFFFF;
-
-    border-radius: 30px;
+    border-radius:
+        25px;
 
     box-shadow:
 
         0 10px 35px
-        rgba(130,30,70,0.3);
+        rgba(130,30,70,0.30);
 
 }
 
@@ -595,6 +573,8 @@ h3 {
 ===================================================== */
 
 .name {
+
+    color: #FFFFFF;
 
     font-size:
 
@@ -606,14 +586,14 @@ h3 {
 
     font-weight: 600;
 
-    color: #FFFFFF;
-
     margin: 10px 0;
 
 }
 
 
 .english-name {
+
+    color: #FFFFFF;
 
     font-size:
 
@@ -623,31 +603,31 @@ h3 {
             34px
         );
 
-    color: #FFFFFF;
-
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
 }
 
 
 .nickname {
 
+    color: #FFFFFF;
+
     font-size:
 
         clamp(
-            21px,
-            2.8vw,
-            32px
+            20px,
+            2.7vw,
+            31px
         );
 
-    color: #FFFFFF;
-
-    margin: 7px;
+    margin: 6px;
 
 }
 
 
 .class-level {
+
+    color: #FFFFFF;
 
     font-size:
 
@@ -656,8 +636,6 @@ h3 {
             2.5vw,
             29px
         );
-
-    color: #FFFFFF;
 
     margin-top: 15px;
 
@@ -670,23 +648,11 @@ h3 {
 
 .text-box {
 
-    background:
-        rgba(255,255,255,0.20);
-
-    border:
-
-        3px solid
-        #FFFFFF;
-
-    border-radius:
-
-        30px;
-
-    padding: 35px;
-
     max-width: 950px;
 
     margin: auto;
+
+    padding: 35px;
 
     text-align: left;
 
@@ -695,6 +661,15 @@ h3 {
     font-size: 20px;
 
     line-height: 2;
+
+    background:
+        rgba(255,255,255,0.16);
+
+    border:
+        3px solid #FFFFFF;
+
+    border-radius:
+        25px;
 
     box-shadow:
 
@@ -706,7 +681,7 @@ h3 {
 
 .text-box p {
 
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 
 }
 
@@ -717,12 +692,9 @@ h3 {
 
 .personal-info {
 
-    display:
-
-        grid;
+    display: grid;
 
     grid-template-columns:
-
         repeat(
             2,
             minmax(
@@ -739,28 +711,23 @@ h3 {
 .info-item {
 
     padding:
-
-        17px
-        20px;
-
-    border:
-
-        2px solid
-        #FFFFFF;
-
-    border-radius:
-
-        20px;
+        16px 20px;
 
     color: #FFFFFF;
 
-    background:
-
-        rgba(255,255,255,0.13);
-
     font-size: 18px;
 
-    transition: 0.3s;
+    background:
+        rgba(255,255,255,0.12);
+
+    border:
+        2px solid #FFFFFF;
+
+    border-radius:
+        18px;
+
+    transition:
+        0.3s ease;
 
 }
 
@@ -768,8 +735,7 @@ h3 {
 .info-item:hover {
 
     transform:
-        translateY(-4px)
-        scale(1.02);
+        translateY(-5px);
 
     background:
         rgba(255,255,255,0.25);
@@ -779,9 +745,9 @@ h3 {
 
 .info-item strong {
 
-    font-size: 19px;
-
     color: #FFFFFF;
+
+    font-size: 19px;
 
 }
 
@@ -792,12 +758,9 @@ h3 {
 
 .works-grid {
 
-    display:
-
-        grid;
+    display: grid;
 
     grid-template-columns:
-
         repeat(
             2,
             1fr
@@ -812,20 +775,17 @@ h3 {
 
     padding: 20px;
 
-    border:
+    background:
+        rgba(255,255,255,0.15);
 
-        3px solid
-        #FFFFFF;
+    border:
+        3px solid #FFFFFF;
 
     border-radius:
-
         25px;
 
-    background:
-
-        rgba(255,255,255,0.16);
-
-    transition: 0.3s;
+    transition:
+        0.3s ease;
 
 }
 
@@ -849,16 +809,13 @@ h3 {
 
     object-fit: cover;
 
-    border:
+    display: block;
 
-        3px solid
-        #FFFFFF;
+    border:
+        3px solid #FFFFFF;
 
     border-radius:
-
         18px;
-
-    display: block;
 
 }
 
@@ -880,52 +837,43 @@ h3 {
 
 .contact-list {
 
-    display:
-
-        flex;
-
-    flex-direction:
-
-        column;
-
-    gap: 20px;
-
     max-width: 750px;
 
     margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
 
 }
 
 
 .contact-item {
 
-    padding:
-
-        25px;
-
-    border:
-
-        3px solid
-        #FFFFFF;
-
-    border-radius:
-
-        25px;
+    padding: 25px;
 
     color: #FFFFFF;
 
     font-size: 24px;
 
     background:
+        rgba(255,255,255,0.14);
 
-        rgba(255,255,255,0.16);
+    border:
+        3px solid #FFFFFF;
+
+    border-radius:
+        20px;
 
     box-shadow:
 
         0 8px 25px
         rgba(130,30,70,0.15);
 
-    transition: 0.3s;
+    transition:
+        0.3s ease;
 
 }
 
@@ -936,7 +884,7 @@ h3 {
         scale(1.03);
 
     background:
-        rgba(255,255,255,0.27);
+        rgba(255,255,255,0.25);
 
 }
 
@@ -945,13 +893,13 @@ h3 {
 
     color: #FFFFFF;
 
-    margin-right: 12px;
+    margin-right: 10px;
 
 }
 
 
 /* =====================================================
-   HEART NAVIGATION
+   NAVIGATION ด้านขวา
 ===================================================== */
 
 .navigation {
@@ -967,40 +915,41 @@ h3 {
 
     z-index: 1000;
 
-    display:
+    display: flex;
 
-        flex;
+    flex-direction: column;
 
-    flex-direction:
-
-        column;
-
-    align-items: center;
-
-    gap: 18px;
+    gap: 12px;
 
 }
 
 
-/* หัวใจแต่ละปุ่ม */
+/* =====================================================
+   ปุ่มเมนูสี่เหลี่ยม
+===================================================== */
 
 .nav-btn {
 
-    position: relative;
+    width: 125px;
 
-    width: 115px;
+    min-height: 65px;
 
-    height: 105px;
-
-    border: none;
-
-    background: transparent;
+    padding:
+        12px 8px;
 
     color: #FFFFFF;
 
+    background:
+        rgba(235,167,177,0.92);
+
+    border:
+        3px solid #FFFFFF;
+
+    border-radius:
+        8px;
+
     font-family:
-        "Kanit",
-        sans-serif;
+        "Kanit", sans-serif;
 
     font-size: 15px;
 
@@ -1008,9 +957,7 @@ h3 {
 
     cursor: pointer;
 
-    display:
-
-        flex;
+    display: flex;
 
     align-items: center;
 
@@ -1018,103 +965,71 @@ h3 {
 
     text-align: center;
 
-    padding: 20px;
+    box-shadow:
+
+        0 6px 18px
+        rgba(130,30,70,0.20);
 
     transition:
-        transform 0.3s;
+        all 0.3s ease;
 
 }
 
 
-/* สร้างรูปหัวใจด้วย CSS */
-
-.nav-btn::before,
-.nav-btn::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 58px;
-
-    height: 90px;
-
-    background:
-        rgba(255,255,255,0.22);
-
-    border:
-        3px solid
-        #FFFFFF;
-
-    border-radius:
-        60px 60px 0 0;
-
-    top: 5px;
-
-    z-index: -1;
-
-}
-
-
-.nav-btn::before {
-
-    left: 25px;
-
-    transform:
-        rotate(-45deg);
-
-    transform-origin:
-        0 100%;
-
-}
-
-
-.nav-btn::after {
-
-    left: 0;
-
-    transform:
-        rotate(45deg);
-
-    transform-origin:
-        100% 100%;
-
-}
-
+/* เมื่อนำเมาส์ไปชี้ */
 
 .nav-btn:hover {
 
     transform:
-        scale(1.12);
+        translateX(-8px);
+
+    background:
+        #FF1493;
+
+    border-color:
+        #FFFFFF;
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(255,20,147,0.40);
 
 }
 
 
+/* หน้าที่กำลังเปิดอยู่ */
+
 .nav-btn.active {
 
-    transform:
-        scale(1.12);
-
-    text-shadow:
-
-        0 0 10px
+    background:
         #FF1493;
+
+    border-color:
+        #FFFFFF;
+
+    transform:
+        translateX(-8px);
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(255,20,147,0.45);
 
 }
 
 
 /* =====================================================
-   MOBILE
+   RESPONSIVE
 ===================================================== */
 
 @media (max-width: 900px) {
 
+
     .page {
 
         padding:
-
             40px
-            130px
+            145px
             40px
             20px;
 
@@ -1123,49 +1038,35 @@ h3 {
 
     .content {
 
-        padding: 30px 20px;
+        padding:
+            30px 20px;
 
     }
 
 
     .personal-info {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
     }
 
 
     .works-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
     }
 
 
     .nav-btn {
 
-        width: 85px;
+        width: 100px;
 
-        height: 80px;
+        min-height: 58px;
 
-        font-size: 11px;
-
-    }
-
-
-    .nav-btn::before,
-    .nav-btn::after {
-
-        width: 43px;
-
-        height: 65px;
-
-    }
-
-
-    .nav-btn::before {
-
-        left: 18px;
+        font-size: 12px;
 
     }
 
@@ -1173,6 +1074,7 @@ h3 {
 
 
 @media (max-width: 600px) {
+
 
     h1 {
 
@@ -1185,7 +1087,7 @@ h3 {
 
     h2 {
 
-        font-size: 45px;
+        font-size: 43px;
 
     }
 
@@ -1193,9 +1095,8 @@ h3 {
     .page {
 
         padding:
-
             30px
-            100px
+            110px
             30px
             10px;
 
@@ -1204,9 +1105,11 @@ h3 {
 
     .content {
 
-        padding: 25px 15px;
+        padding:
+            25px 15px;
 
-        border-radius: 25px;
+        border-radius:
+            22px;
 
     }
 
@@ -1220,41 +1123,29 @@ h3 {
 
     .text-box {
 
-        padding: 20px;
+        padding:
+            20px;
 
-        font-size: 16px;
+        font-size:
+            16px;
 
     }
 
 
     .nav-btn {
 
-        width: 70px;
+        width: 75px;
 
-        height: 65px;
+        min-height: 55px;
 
-        font-size: 9px;
+        padding:
+            7px 4px;
 
-        padding: 10px;
+        font-size:
+            10px;
 
-    }
-
-
-    .nav-btn::before,
-    .nav-btn::after {
-
-        width: 35px;
-
-        height: 53px;
-
-        border-width: 2px;
-
-    }
-
-
-    .nav-btn::before {
-
-        left: 15px;
+        border-width:
+            2px;
 
     }
 
@@ -1263,16 +1154,18 @@ h3 {
 
         right: 5px;
 
-        gap: 8px;
+        gap: 7px;
 
     }
 
 
     .contact-item {
 
-        font-size: 17px;
+        font-size:
+            17px;
 
-        padding: 20px 10px;
+        padding:
+            20px 10px;
 
     }
 
@@ -1293,11 +1186,17 @@ h3 {
 <div class="background">
 
     <div class="heart">♥</div>
+
     <div class="heart">♥</div>
+
     <div class="heart">♥</div>
+
     <div class="heart">♥</div>
+
     <div class="heart">♥</div>
+
     <div class="heart">♥</div>
+
     <div class="heart">♥</div>
 
 </div>
@@ -1371,7 +1270,7 @@ h3 {
 
 
 <!-- =====================================================
-     HOME
+     PAGE 1 : HOME
 ===================================================== -->
 
 <section
@@ -1387,12 +1286,12 @@ h3 {
         </h1>
 
 
-        <!-- ==========================================
-             ใส่รูปโปรไฟล์ตรงนี้
+        <!-- =========================================
+             รูปโปรไฟล์
 
-             รูปภาพ:
+             ใส่รูปของคุณไว้ที่:
              images/profile.jpg
-        =========================================== -->
+        ========================================== -->
 
         <img
             src="images/profile.jpg"
@@ -1432,7 +1331,7 @@ h3 {
 
         <div class="class-level">
 
-            ระดับชั้น มัธยมศึกษาชั้นปีที่ 6/3
+            ระดับชั้น มัธยมศึกษาชั้นปีที่6/3
 
         </div>
 
@@ -1444,7 +1343,7 @@ h3 {
 
 
 <!-- =====================================================
-     PREFACE
+     PAGE 2 : PREFACE
 ===================================================== -->
 
 <section
@@ -1461,6 +1360,7 @@ h3 {
 
 
         <div class="text-box">
+
 
             <p>
 
@@ -1481,6 +1381,7 @@ h3 {
 
             </p>
 
+
         </div>
 
 
@@ -1491,7 +1392,7 @@ h3 {
 
 
 <!-- =====================================================
-     PROFILE
+     PAGE 3 : PROFILE
 ===================================================== -->
 
 <section
@@ -1711,7 +1612,7 @@ h3 {
 
 
 <!-- =====================================================
-     WORKS
+     PAGE 4 : WORKS
 ===================================================== -->
 
 <section
@@ -1738,7 +1639,8 @@ h3 {
 
                 <img
                     src="images/work1.jpg"
-                    alt="ผลงานที่ 1">
+                    alt="ผลงานที่ 1"
+                >
 
                 <div class="work-title">
 
@@ -1749,7 +1651,6 @@ h3 {
             </div>
 
 
-
             <!-- รูปภาพที่ 2 -->
 
             <div class="work">
@@ -1758,7 +1659,8 @@ h3 {
 
                 <img
                     src="images/work2.jpg"
-                    alt="ผลงานที่ 2">
+                    alt="ผลงานที่ 2"
+                >
 
                 <div class="work-title">
 
@@ -1769,7 +1671,6 @@ h3 {
             </div>
 
 
-
             <!-- รูปภาพที่ 3 -->
 
             <div class="work">
@@ -1778,7 +1679,8 @@ h3 {
 
                 <img
                     src="images/work3.jpg"
-                    alt="ผลงานที่ 3">
+                    alt="ผลงานที่ 3"
+                >
 
                 <div class="work-title">
 
@@ -1789,7 +1691,6 @@ h3 {
             </div>
 
 
-
             <!-- รูปภาพที่ 4 -->
 
             <div class="work">
@@ -1798,7 +1699,8 @@ h3 {
 
                 <img
                     src="images/work4.jpg"
-                    alt="ผลงานที่ 4">
+                    alt="ผลงานที่ 4"
+                >
 
                 <div class="work-title">
 
@@ -1809,7 +1711,6 @@ h3 {
             </div>
 
 
-
             <!-- รูปภาพที่ 5 -->
 
             <div class="work">
@@ -1818,7 +1719,8 @@ h3 {
 
                 <img
                     src="images/work5.jpg"
-                    alt="ผลงานที่ 5">
+                    alt="ผลงานที่ 5"
+                >
 
                 <div class="work-title">
 
@@ -1839,7 +1741,7 @@ h3 {
 
 
 <!-- =====================================================
-     CONTACT
+     PAGE 5 : CONTACT
 ===================================================== -->
 
 <section
@@ -1934,7 +1836,7 @@ function showPage(pageId, button) {
     selectedPage.classList.add("active");
 
 
-    /* เอา active ออกจากปุ่มทั้งหมด */
+    /* เปลี่ยนปุ่ม Active */
 
     const buttons =
         document.querySelectorAll(".nav-btn");
@@ -1949,12 +1851,10 @@ function showPage(pageId, button) {
     );
 
 
-    /* เพิ่ม active ให้ปุ่มที่กด */
-
     button.classList.add("active");
 
 
-    /* เลื่อนกลับไปด้านบน */
+    /* เลื่อนขึ้นด้านบน */
 
     window.scrollTo({
 
