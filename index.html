@@ -1,31 +1,1276 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>หน้าแนะนำตัวของฉัน</title>
-<style>
-body {
-background-color: #FFC5D3; color: #333;
-text-align: center; padding: 50px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-}
-.card {
-background: white; border-radius: 50px;
-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-max-width: 500px; margin: 0 auto; padding: 30px;
+    <title>My Portfolio - Surivipa Padthong</title>
 
-}
-h1 { color: #2c3e50; }
-p { font-size: 18px; line-height: 1.6; }
-</style>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Prompt", sans-serif;
+            background: #EBA7B1;
+            color: #CCFFFF;
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           พื้นหลัง
+        ===================================================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden;
+            background: #EBA7B1;
+        }
+
+
+        /* หัวใจพื้นหลัง */
+
+        .heart-bg {
+            position: absolute;
+            color: #FFFFFF;
+            opacity: 0.15;
+            font-size: 100px;
+            animation: floatingHeart 8s ease-in-out infinite;
+        }
+
+        .heart1 {
+            left: 5%;
+            top: 15%;
+            font-size: 130px;
+        }
+
+        .heart2 {
+            left: 30%;
+            top: 65%;
+            font-size: 90px;
+            animation-delay: 2s;
+        }
+
+        .heart3 {
+            right: 28%;
+            top: 18%;
+            font-size: 170px;
+            animation-delay: 1s;
+        }
+
+        .heart4 {
+            right: 5%;
+            bottom: 10%;
+            font-size: 120px;
+            animation-delay: 3s;
+        }
+
+        .heart5 {
+            left: 55%;
+            bottom: 5%;
+            font-size: 70px;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatingHeart {
+
+            0%,100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(5deg);
+            }
+        }
+
+
+        /* =====================================================
+           ดาว
+        ===================================================== */
+
+        .star {
+            position: absolute;
+            color: #FFFFFF;
+            text-shadow:
+                0 0 5px #FFFFFF,
+                0 0 10px #FFFFFF,
+                0 0 20px #FFFFFF,
+                0 0 35px #FFFFFF;
+            animation: twinkle 2s ease-in-out infinite alternate;
+        }
+
+        .star1 {
+            top: 15%;
+            left: 15%;
+            font-size: 25px;
+        }
+
+        .star2 {
+            top: 30%;
+            left: 45%;
+            font-size: 17px;
+            animation-delay: 0.5s;
+        }
+
+        .star3 {
+            top: 12%;
+            right: 20%;
+            font-size: 30px;
+            animation-delay: 1s;
+        }
+
+        .star4 {
+            bottom: 20%;
+            left: 20%;
+            font-size: 20px;
+            animation-delay: 1.5s;
+        }
+
+        .star5 {
+            bottom: 12%;
+            right: 25%;
+            font-size: 27px;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes twinkle {
+
+            from {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+
+        /* =====================================================
+           ดาวตก
+        ===================================================== */
+
+        .shooting-star {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: #FFFFFF;
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 5px #FFFFFF,
+                0 0 12px #FFFFFF,
+                0 0 25px #FFFFFF;
+
+            transform: rotate(45deg);
+            animation: shootingStar 5s linear infinite;
+        }
+
+        .shooting-star::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 3px;
+
+            right: 0;
+            top: 2px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #FF1493,
+                #FF1493
+            );
+
+            box-shadow:
+                0 0 8px #FF1493,
+                0 0 15px #FF1493;
+        }
+
+        @keyframes shootingStar {
+
+            0% {
+                top: -10%;
+                left: -10%;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            65% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 110%;
+                left: 75%;
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main {
+            width: calc(100% - 180px);
+            min-height: 100vh;
+            margin-right: 160px;
+        }
+
+
+        /* =====================================================
+           แต่ละหน้า
+        ===================================================== */
+
+        .page {
+            min-height: 100vh;
+
+            display: none;
+
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 60px 80px;
+            animation: pageFade 0.6s ease;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes pageFade {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =====================================================
+           หัวข้อ
+        ===================================================== */
+
+        .page-title {
+            font-family: "Itim", cursive;
+
+            color: #FFCCFF;
+
+            font-size: clamp(55px, 7vw, 100px);
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+            text-shadow:
+                0 0 5px #FFCCFF,
+                0 0 15px #FFCCFF,
+                0 0 30px rgba(255,204,255,0.8);
+        }
+
+
+        /* =====================================================
+           หน้าแรก
+        ===================================================== */
+
+        #home {
+            text-align: center;
+        }
+
+        .portfolio-title {
+            font-family: "Itim", cursive;
+
+            color: #FFCCFF;
+
+            font-size: clamp(60px, 8vw, 115px);
+
+            white-space: nowrap;
+
+            text-shadow:
+                0 0 5px #FFCCFF,
+                0 0 15px #FFCCFF,
+                0 0 30px #FFCCFF,
+                0 0 50px rgba(255,204,255,0.7);
+
+            margin-bottom: 35px;
+        }
+
+
+        /* =====================================================
+           รูปโปรไฟล์
+        ===================================================== */
+
+        .profile-image {
+
+            width: min(33vw, 430px);
+            aspect-ratio: 1 / 3;
+
+            min-height: 380px;
+
+            border: 4px solid #FFFFFF;
+
+            border-radius: 25px;
+
+            object-fit: cover;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.2),
+                    rgba(255,20,147,0.15)
+                );
+
+            box-shadow:
+                0 0 10px #FFFFFF,
+                0 0 25px #FFFFFF,
+                0 0 45px rgba(255,255,255,0.7);
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================================
+           ข้อมูลหน้าแรก
+        ===================================================== */
+
+        .profile-info {
+            text-align: center;
+            line-height: 1.9;
+        }
+
+        .profile-name {
+            font-size: clamp(24px, 3vw, 38px);
+            font-weight: 600;
+            color: #CCFFFF;
+        }
+
+        .profile-english {
+            font-size: clamp(19px, 2vw, 28px);
+            color: #CCFFFF;
+        }
+
+        .nickname {
+            font-size: clamp(18px, 2vw, 26px);
+            color: #CCFFFF;
+        }
+
+        .education {
+            font-size: clamp(16px, 1.7vw, 23px);
+            color: #CCFFFF;
+        }
+
+
+        /* =====================================================
+           กล่องข้อความ
+        ===================================================== */
+
+        .content-box {
+
+            width: min(900px, 90%);
+
+            padding: 40px;
+
+            border: 2px solid rgba(255,255,255,0.8);
+
+            border-radius: 35px;
+
+            background: rgba(255,255,255,0.10);
+
+            backdrop-filter: blur(8px);
+
+            box-shadow:
+                0 0 10px rgba(255,255,255,0.6),
+                inset 0 0 25px rgba(255,255,255,0.05);
+
+            color: #CCFFFF;
+
+            font-size: clamp(17px, 1.5vw, 22px);
+
+            line-height: 2;
+
+            text-align: left;
+        }
+
+        .content-box strong {
+            color: #FFCCFF;
+        }
+
+
+        /* =====================================================
+           ประวัติส่วนตัว
+        ===================================================== */
+
+        .personal-box {
+            width: min(950px, 92%);
+        }
+
+        .section-subtitle {
+            color: #FFCCFF;
+
+            font-family: "Itim", cursive;
+
+            font-size: 38px;
+
+            margin-bottom: 20px;
+
+            text-align: center;
+
+            text-shadow:
+                0 0 10px #FFCCFF;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .info-label {
+            color: #FFCCFF;
+            font-weight: 500;
+            min-width: 270px;
+        }
+
+
+        /* =====================================================
+           ผลงาน
+        ===================================================== */
+
+        .works-grid {
+
+            width: min(1100px, 95%);
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+
+            margin-top: 10px;
+        }
+
+        .work-card {
+
+            min-height: 270px;
+
+            border: 2px solid #FFFFFF;
+
+            border-radius: 30px;
+
+            padding: 15px;
+
+            background: rgba(255,255,255,0.10);
+
+            box-shadow:
+                0 0 10px rgba(255,255,255,0.6),
+                inset 0 0 15px rgba(255,255,255,0.05);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .work-card img {
+
+            width: 100%;
+            height: 240px;
+
+            object-fit: cover;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .work-number {
+
+            position: absolute;
+
+            color: #FFCCFF;
+
+            font-size: 25px;
+        }
+
+
+        /* =====================================================
+           ติดต่อ
+        ===================================================== */
+
+        .contact-box {
+
+            width: min(800px, 90%);
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 25px;
+        }
+
+        .contact-item {
+
+            padding: 22px 30px;
+
+            border: 2px solid #FFFFFF;
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.10);
+
+            color: #CCFFFF;
+
+            font-size: clamp(18px, 2vw, 25px);
+
+            box-shadow:
+                0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .contact-item span {
+
+            color: #FFCCFF;
+
+            font-weight: 600;
+
+            margin-right: 15px;
+        }
+
+
+        /* =====================================================
+           เมนูด้านขวา
+        ===================================================== */
+
+        .side-menu {
+
+            position: fixed;
+
+            right: 25px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            z-index: 100;
+
+            width: 135px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 25px 12px;
+
+            border-radius: 70px;
+
+            background: rgba(255,255,255,0.10);
+
+            backdrop-filter: blur(10px);
+
+            border: 2px solid rgba(255,255,255,0.7);
+
+            box-shadow:
+                0 0 12px #FFFFFF,
+                0 0 30px rgba(255,255,255,0.5);
+        }
+
+
+        /* หัวใจครอบเมนู */
+
+        .heart-menu {
+
+            position: relative;
+
+            width: 110px;
+            height: 100px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .heart-menu::before {
+
+            content: "♥";
+
+            position: absolute;
+
+            font-size: 115px;
+
+            color: transparent;
+
+            -webkit-text-stroke: 2px #FFFFFF;
+
+            filter:
+                drop-shadow(0 0 6px #FFFFFF)
+                drop-shadow(0 0 15px rgba(255,255,255,0.7));
+
+            z-index: -1;
+        }
+
+
+        /* ปุ่มเมนู */
+
+        .menu-btn {
+
+            width: 105px;
+
+            min-height: 48px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #FFCCFF;
+
+            font-family: "Prompt", sans-serif;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            text-shadow:
+                0 0 6px #FFCCFF;
+        }
+
+        .menu-btn:hover {
+
+            color: #FFFFFF;
+
+            transform: scale(1.08);
+
+            text-shadow:
+                0 0 5px #FFFFFF,
+                0 0 15px #FF1493,
+                0 0 25px #FF1493;
+        }
+
+        .menu-btn.active {
+
+            color: #FFFFFF;
+
+            text-shadow:
+                0 0 5px #FFFFFF,
+                0 0 15px #FF1493,
+                0 0 25px #FF1493;
+        }
+
+
+        /* =====================================================
+           หัวใจตกแต่ง
+        ===================================================== */
+
+        .small-heart {
+
+            position: fixed;
+
+            color: #FFFFFF;
+
+            font-size: 20px;
+
+            opacity: 0.7;
+
+            text-shadow:
+                0 0 5px #FFFFFF,
+                0 0 10px #FFFFFF;
+
+            animation: heartFloat 5s ease-in-out infinite;
+
+            pointer-events: none;
+        }
+
+        .sh1 {
+            left: 10%;
+            bottom: 10%;
+        }
+
+        .sh2 {
+            left: 45%;
+            top: 10%;
+            animation-delay: 1s;
+        }
+
+        .sh3 {
+            right: 25%;
+            bottom: 20%;
+            animation-delay: 2s;
+        }
+
+        @keyframes heartFloat {
+
+            0%,100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-20px);
+                opacity: 0.9;
+            }
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            main {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .page {
+                padding: 40px 20px 150px;
+            }
+
+            .portfolio-title {
+                font-size: clamp(45px, 12vw, 80px);
+            }
+
+            .profile-image {
+                width: 180px;
+                min-height: 400px;
+            }
+
+            .side-menu {
+
+                top: auto;
+                bottom: 15px;
+
+                right: 50%;
+
+                transform: translateX(50%);
+
+                width: 95%;
+
+                height: auto;
+
+                flex-direction: row;
+
+                justify-content: center;
+
+                gap: 3px;
+
+                padding: 10px;
+
+                border-radius: 50px;
+            }
+
+            .heart-menu {
+                width: 24%;
+                height: 65px;
+            }
+
+            .heart-menu::before {
+                font-size: 75px;
+            }
+
+            .menu-btn {
+                width: 100%;
+                font-size: 11px;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-label {
+                min-width: 100%;
+            }
+
+            .content-box {
+                padding: 25px;
+            }
+        }
+
+    </style>
 </head>
+
+
 <body>
-<div class="card">
-<h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน </h1>
-<p>สวัสดีค่ะ! ฉันชื่อ <strong>สุริวิภา พัดทอง(surivipa)</strong></p>
-<p>ขณะนี้กำลังศึกษา/สนใจด้าน math and science</p>
-<p>นี่คือเว็บไซต์แรกของผมที่โฮสต์บน GitHub Pages!</p>
-<a href="portfolio.html" class="btn"> ดูแฟ้มสะสมผลงาน</a>
-</div>
+
+
+    <!-- =====================================================
+         BACKGROUND
+    ===================================================== -->
+
+    <div class="background">
+
+        <!-- หัวใจพื้นหลัง -->
+        <div class="heart-bg heart1">♥</div>
+        <div class="heart-bg heart2">♥</div>
+        <div class="heart-bg heart3">♥</div>
+        <div class="heart-bg heart4">♥</div>
+        <div class="heart-bg heart5">♥</div>
+
+        <!-- ดาว -->
+        <div class="star star1">✦</div>
+        <div class="star star2">✦</div>
+        <div class="star star3">✦</div>
+        <div class="star star4">✦</div>
+        <div class="star star5">✦</div>
+
+        <!-- ดาวตก -->
+        <div class="shooting-star"></div>
+
+        <!-- หัวใจเล็ก -->
+        <div class="small-heart sh1">♥</div>
+        <div class="small-heart sh2">♥</div>
+        <div class="small-heart sh3">♥</div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MENU ด้านขวา
+    ===================================================== -->
+
+    <nav class="side-menu">
+
+        <div class="heart-menu">
+            <button class="menu-btn active" onclick="showPage('home', this)">
+                หน้าหลัก
+            </button>
+        </div>
+
+        <div class="heart-menu">
+            <button class="menu-btn" onclick="showPage('preface', this)">
+                คำนำ
+            </button>
+        </div>
+
+        <div class="heart-menu">
+            <button class="menu-btn" onclick="showPage('profile', this)">
+                ประวัติส่วนตัว
+            </button>
+        </div>
+
+        <div class="heart-menu">
+            <button class="menu-btn" onclick="showPage('works', this)">
+                ผลงานและกิจกรรม
+            </button>
+        </div>
+
+        <div class="heart-menu">
+            <button class="menu-btn" onclick="showPage('contact', this)">
+                ช่องทางการติดต่อ
+            </button>
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             หน้า 1 : HOME
+        ================================================= -->
+
+        <section id="home" class="page active">
+
+            <h1 class="portfolio-title">
+                My Portfolio
+            </h1>
+
+
+            <!-- =================================================
+                 ใส่รูปภาพหน้าแรกตรงนี้
+                 
+                 แนะนำให้ตั้งชื่อรูปว่า profile.jpg
+                 แล้วนำไปไว้ในโฟลเดอร์เดียวกับ index.html
+            ================================================== -->
+
+            <img
+                src="profile.jpg"
+                alt="รูปของสุริวิภา พัดทอง"
+                class="profile-image"
+            >
+
+
+            <div class="profile-info">
+
+                <div class="profile-name">
+                    ชื่อ-นามสกุล สุริวิภา พัดทอง
+                </div>
+
+                <div class="profile-english">
+                    Name Surivipa Padthong
+                </div>
+
+                <div class="nickname">
+                    ชื่อเล่น เปรี้ยว
+                </div>
+
+                <div class="nickname">
+                    Nickname Preaw
+                </div>
+
+                <div class="education">
+                    ระดับชั้น มัธยมศึกษาชั้นปีที่ 6/3
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             หน้า 2 : คำนำ
+        ================================================= -->
+
+        <section id="preface" class="page">
+
+            <h1 class="page-title">
+                คำนำ
+            </h1>
+
+            <div class="content-box">
+
+                แฟ้มสะสมผลงาน (Portfolio) เล่มนี้
+                จัดทำขึ้นเพื่อเป็นตัวแทนในการนำเสนอข้อมูลเกี่ยวกับ
+                ประวัติส่วนตัว ความรู้ ความสามารถ ทักษะ
+                และกิจกรรมต่างๆ ของข้าพเจ้า
+                โดยเฉพาะความสนใจและความมุ่งมั่นที่มีต่อการศึกษาต่อ
+
+                <br><br>
+
+                ภายในแฟ้มสะสมผลงานเล่มนี้ ประกอบด้วย
+                ประวัติส่วนตัว ผลการเรียน
+                กิจกรรมที่ข้าพเจ้าได้เข้าร่วม
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             หน้า 3 : ประวัติส่วนตัว
+        ================================================= -->
+
+        <section id="profile" class="page">
+
+            <h1 class="page-title">
+                ประวัติส่วนตัว
+            </h1>
+
+            <div class="content-box personal-box">
+
+                <h2 class="section-subtitle">
+                    ประวัติส่วนตัว
+                </h2>
+
+                <div class="info-row">
+                    <div class="info-label">ชื่อ-นามสกุล</div>
+                    <div>สุริวิภา พัดทอง</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Name</div>
+                    <div>Surivipa Padthong</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">ชื่อเล่น</div>
+                    <div>เปรี้ยว</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Nickname</div>
+                    <div>Preaw</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">อายุ</div>
+                    <div>17 ปี</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Age</div>
+                    <div>17 years old</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">วันเกิด</div>
+                    <div>13/05/09</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">สัญชาติ</div>
+                    <div>ไทย</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">เชื้อชาติ</div>
+                    <div>ไทย</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">ศาสนา</div>
+                    <div>พุทธ</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">ประวัติการศึกษา</div>
+                    <div>
+                        สถานศึกษา โรงเรียนบ้านบึง
+                        "อุตสาหกรรมนุเคราะห์"
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">แผนการเรียน</div>
+                    <div>
+                        วิทยาศาสตร์-คณิตศาสตร์ (MSEP)
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        คณะ-สาขาและมหาวิทยาลัยที่สนใจศึกษาต่อ
+                    </div>
+
+                    <div>
+                        คณะนิเทศศาสตร์
+                        สาขาศิลปะภาพยนตร์
+                        มหาวิทยาลัยจุฬาลงกรณ์มหาวิทยาลัย
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             หน้า 4 : ผลงานและกิจกรรม
+        ================================================= -->
+
+        <section id="works" class="page">
+
+            <h1 class="page-title">
+                ผลงานและกิจกรรม
+            </h1>
+
+            <div class="works-grid">
+
+
+                <!-- รูปที่ 1 -->
+
+                <div class="work-card">
+
+                    <img
+                        src="work1.jpg"
+                        alt="ผลงานและกิจกรรมที่ 1"
+                    >
+
+                </div>
+
+
+                <!-- รูปที่ 2 -->
+
+                <div class="work-card">
+
+                    <img
+                        src="work2.jpg"
+                        alt="ผลงานและกิจกรรมที่ 2"
+                    >
+
+                </div>
+
+
+                <!-- รูปที่ 3 -->
+
+                <div class="work-card">
+
+                    <img
+                        src="work3.jpg"
+                        alt="ผลงานและกิจกรรมที่ 3"
+                    >
+
+                </div>
+
+
+                <!-- รูปที่ 4 -->
+
+                <div class="work-card">
+
+                    <img
+                        src="work4.jpg"
+                        alt="ผลงานและกิจกรรมที่ 4"
+                    >
+
+                </div>
+
+
+                <!-- รูปที่ 5 -->
+
+                <div class="work-card">
+
+                    <img
+                        src="work5.jpg"
+                        alt="ผลงานและกิจกรรมที่ 5"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             หน้า 5 : ติดต่อ
+        ================================================= -->
+
+        <section id="contact" class="page">
+
+            <h1 class="page-title">
+                ช่องทางการติดต่อ
+            </h1>
+
+
+            <div class="contact-box">
+
+
+                <div class="contact-item">
+
+                    <span>Gmail</span>
+
+                    suriwipa.0315@gmail.com
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <span>Tel</span>
+
+                    081-459-3691
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <span>IG</span>
+
+                    tppwrsp
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        function showPage(pageId, button) {
+
+            // ซ่อนทุกหน้า
+            const pages = document.querySelectorAll(".page");
+
+            pages.forEach(page => {
+                page.classList.remove("active");
+            });
+
+
+            // เปิดหน้าที่เลือก
+            const selectedPage = document.getElementById(pageId);
+
+            if (selectedPage) {
+                selectedPage.classList.add("active");
+            }
+
+
+            // ลบสถานะ active จากปุ่มทั้งหมด
+            const buttons = document.querySelectorAll(".menu-btn");
+
+            buttons.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+
+            // ทำให้ปุ่มที่เลือกสว่าง
+            button.classList.add("active");
+
+
+            // เลื่อนกลับขึ้นด้านบน
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
+
 </body>
 </html>
+```
