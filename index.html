@@ -1,878 +1,754 @@
-```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>My Portfolio - Surivipa Padthong</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Itim&family=Mitr:wght@300;400;500;600;700&display=swap');
-
-/* =========================
-   พื้นฐาน
-========================= */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Mitr", sans-serif;
-    color: #FFFFFF;
-    overflow-x: hidden;
-    background: #EBA7B1;
-}
-
-/* =========================
-   พื้นหลังลายตารางหมากรุก
-========================= */
-.page {
-    position: relative;
-    min-height: 100vh;
-    padding: 55px 150px 80px 50px;
-
-    background-color: #EBA7B1;
-
-    background-image:
-        linear-gradient(
-            45deg,
-            rgba(255,255,255,0.25) 25%,
-            transparent 25%,
-            transparent 75%,
-            rgba(255,255,255,0.25) 75%
-        ),
-        linear-gradient(
-            45deg,
-            rgba(255,255,255,0.25) 25%,
-            transparent 25%,
-            transparent 75%,
-            rgba(255,255,255,0.25) 75%
-        );
-
-    background-position: 0 0, 35px 35px;
-    background-size: 70px 70px;
-
-    overflow: hidden;
-}
-
-/* =========================
-   หัวใจพื้นหลัง
-========================= */
-.heart {
-    position: absolute;
-    color: rgba(255,255,255,0.35);
-    font-size: 55px;
-    z-index: 0;
-    animation: heartFloat 5s ease-in-out infinite;
-    pointer-events: none;
-}
-
-.h1 { top: 12%; left: 7%; }
-.h2 { top: 30%; right: 15%; font-size: 80px; }
-.h3 { bottom: 20%; left: 15%; font-size: 65px; }
-.h4 { bottom: 8%; right: 8%; font-size: 90px; }
-.h5 { top: 65%; right: 35%; font-size: 40px; }
-
-@keyframes heartFloat {
-    0%,100% {
-        transform: translateY(0) rotate(-8deg);
-    }
-    50% {
-        transform: translateY(-15px) rotate(8deg);
-    }
-}
-
-/* =========================
-   ดาวตก
-========================= */
-.shooting-star {
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 20px;
-    height: 20px;
-    background: #FFFFFF;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #FFFFFF;
-    z-index: 1;
-    animation: shootingStar 6s linear infinite;
-}
-
-.shooting-star::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    width: 170px;
-    height: 5px;
-    border-radius: 100%;
-    background: #FF1493;
-    transform: rotate(45deg);
-    transform-origin: right center;
-    box-shadow: 0 0 12px #FF1493;
-}
-
-@keyframes shootingStar {
-    0% {
-        transform: translate(-20px,-20px);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    70% {
-        transform: translate(75vw,70vh);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(90vw,90vh);
-        opacity: 0;
-    }
-}
-
-/* =========================
-   เมนูด้านขวา
-========================= */
-.navbar {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
-
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.nav-btn {
-    width: 125px;
-    min-height: 55px;
-
-    border: 3px solid #FFFFFF;
-    border-radius: 14px;
-
-    background: rgba(235,167,177,0.88);
-    color: #FFFFFF;
-
-    font-family: "Mitr", sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0 8px rgba(255,255,255,0.7),
-        inset 0 0 10px rgba(255,255,255,0.15);
-
-    transition: 0.3s;
-}
-
-.nav-btn:hover {
-    background: #FFFFFF;
-    color: #FF1493;
-    transform: translateX(-8px);
-    box-shadow: 0 0 18px #FFFFFF;
-}
-
-.nav-btn.active {
-    background: #FFFFFF;
-    color: #FF1493;
-}
-
-/* =========================
-   หน้าแต่ละหน้า
-========================= */
-.content {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 1100px;
-    margin: auto;
-}
-
-.section {
-    display: none;
-    min-height: calc(100vh - 100px);
-
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-
-    text-align: center;
-
-    animation: fadeIn 0.6s ease;
-}
-
-.section.active {
-    display: flex;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================
-   หัวข้อ
-========================= */
-.main-title {
-    font-family: "Itim", cursive;
-    font-size: clamp(55px, 8vw, 105px);
-    color: #FFFFFF;
-    white-space: nowrap;
-    line-height: 1;
-    margin: 20px 0 45px;
-
-    text-shadow:
-        3px 3px 0 #FF1493,
-        0 0 15px rgba(255,255,255,0.8);
-}
-
-.page-title {
-    font-family: "Itim", cursive;
-    font-size: clamp(45px, 6vw, 75px);
-    color: #FFFFFF;
-    margin: 15px 0 35px;
-
-    text-shadow:
-        3px 3px 0 #FF1493,
-        0 0 15px rgba(255,255,255,0.7);
-}
-
-/* =========================
-   กรอบเนื้อหา
-========================= */
-.card {
-    width: 100%;
-    max-width: 950px;
-
-    padding: 35px;
-    margin-bottom: 30px;
-
-    border: 3px solid #FFFFFF;
-    border-radius: 25px;
-
-    background: rgba(235,167,177,0.82);
-
-    box-shadow:
-        0 0 20px rgba(255,255,255,0.35),
-        inset 0 0 20px rgba(255,255,255,0.08);
-
-    backdrop-filter: blur(4px);
-}
-
-.card h2 {
-    font-family: "Itim", cursive;
-    font-size: 35px;
-    color: #FFFFFF;
-    margin-bottom: 20px;
-}
-
-.card p {
-    color: #FFFFFF;
-    font-size: 18px;
-    line-height: 2;
-    text-align: left;
-}
-
-/* =========================
-   หน้าแรก
-========================= */
-.profile-image {
-    width: 33vw;
-    height: 33vw;
-
-    max-width: 420px;
-    max-height: 420px;
-
-    min-width: 230px;
-    min-height: 230px;
-
-    object-fit: cover;
-
-    border: 5px solid #FFFFFF;
-    border-radius: 20px;
-
-    box-shadow:
-        0 0 25px rgba(255,255,255,0.7),
-        8px 8px 0 #FF1493;
-
-    margin-bottom: 30px;
-}
-
-.profile-info {
-    text-align: center;
-}
-
-.profile-info .name {
-    font-size: clamp(28px, 4vw, 45px);
-    font-weight: 600;
-    line-height: 1.5;
-}
-
-.profile-info .english {
-    font-size: clamp(21px, 3vw, 32px);
-    line-height: 1.5;
-}
-
-.profile-info .nickname {
-    font-size: clamp(25px, 3.5vw, 38px);
-    margin-top: 10px;
-}
-
-.profile-info .nickname-en {
-    font-size: clamp(18px, 2.5vw, 28px);
-}
-
-.profile-info .class {
-    font-size: clamp(18px, 2.5vw, 28px);
-    margin-top: 15px;
-}
-
-/* =========================
-   คำนำ
-========================= */
-.intro-box {
-    max-width: 900px;
-}
-
-.intro-box p {
-    text-align: center;
-    font-size: 21px;
-    line-height: 2.2;
-}
-
-/* =========================
-   ประวัติส่วนตัว
-========================= */
-.personal-info {
-    text-align: left;
-}
-
-.personal-info p {
-    margin-bottom: 6px;
-}
-
-.personal-info strong {
-    color: #FFFFFF;
-}
-
-/* =========================
-   ผลงานและกิจกรรม
-========================= */
-.activities {
-    width: 100%;
-    max-width: 1050px;
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-
-    padding-bottom: 30px;
-}
-
-.activity-card {
-    border: 3px solid #FFFFFF;
-    border-radius: 22px;
-
-    padding: 20px;
-
-    background: rgba(235,167,177,0.88);
-
-    box-shadow:
-        0 0 15px rgba(255,255,255,0.35);
-
-    transition: 0.3s;
-}
-
-.activity-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 0 25px rgba(255,255,255,0.75);
-}
-
-.activity-card img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-
-    border: 3px solid #FFFFFF;
-    border-radius: 15px;
-
-    display: block;
-    margin-bottom: 20px;
-}
-
-.activity-card h3 {
-    font-family: "Itim", cursive;
-    font-size: 25px;
-    color: #FFFFFF;
-    line-height: 1.5;
-    margin-bottom: 12px;
-}
-
-.activity-card p {
-    color: #FFFFFF;
-    font-size: 16px;
-    line-height: 1.8;
-    text-align: left;
-}
-
-/* =========================
-   ช่องทางติดต่อ
-========================= */
-.contact-card {
-    max-width: 700px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-
-    border-bottom: 2px solid rgba(255,255,255,0.5);
-
-    padding: 20px 10px;
-
-    font-size: 23px;
-    color: #FFFFFF;
-}
-
-.contact-item:last-child {
-    border-bottom: none;
-}
-
-.contact-icon {
-    font-size: 35px;
-    width: 55px;
-}
-
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 900px) {
-
-    .page {
-        padding: 35px 25px 100px;
-    }
-
-    .navbar {
-        position: fixed;
-        left: 50%;
-        right: auto;
-        bottom: 12px;
-        top: auto;
-        transform: translateX(-50%);
-
-        flex-direction: row;
-
-        width: calc(100% - 20px);
-        justify-content: center;
-
-        gap: 5px;
-    }
-
-    .nav-btn {
-        width: auto;
-        flex: 1;
-        min-height: 48px;
-        font-size: 12px;
-        padding: 5px;
-    }
-
-    .nav-btn:hover {
-        transform: translateY(-5px);
-    }
-
-    .activities {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-    }
-
-    .profile-image {
-        width: 65vw;
-        height: 65vw;
-    }
-
-    .card {
-        padding: 22px;
-    }
-
-    .card p {
-        font-size: 16px;
-    }
-
-    .contact-item {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 500px) {
-
-    .main-title {
-        font-size: 48px;
-    }
-
-    .page-title {
-        font-size: 42px;
-    }
-
-    .profile-info .name {
-        font-size: 27px;
-    }
-
-    .profile-info .english {
-        font-size: 20px;
-    }
-
-    .profile-image {
-        width: 75vw;
-        height: 75vw;
-    }
-
-    .nav-btn {
-        font-size: 10px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - สุริวิภา พัดทอง</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Prompt", sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+
+            /* พื้นหลังตารางหมากรุก */
+            background-color: #EBA7B1;
+            background-image:
+                linear-gradient(45deg, #ffffff 25%, transparent 25%),
+                linear-gradient(-45deg, #ffffff 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #ffffff 75%),
+                linear-gradient(-45deg, transparent 75%, #ffffff 75%);
+            background-size: 80px 80px;
+            background-position:
+                0 0,
+                0 40px,
+                40px -40px,
+                -40px 0px;
+
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           หัวใจตกแต่งพื้นหลัง
+        ========================= */
+
+        body::before {
+            content: "♥  ♥  ♥  ♥  ♥  ♥  ♥  ♥  ♥  ♥";
+            position: fixed;
+            top: 8%;
+            left: 2%;
+            font-size: 35px;
+            color: rgba(255, 20, 147, 0.35);
+            letter-spacing: 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "♥  ♥  ♥  ♥  ♥  ♥  ♥  ♥  ♥";
+            position: fixed;
+            bottom: 8%;
+            right: 5%;
+            font-size: 40px;
+            color: rgba(255, 20, 147, 0.35);
+            letter-spacing: 25px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* =========================
+           ดาวตก
+        ========================= */
+
+        .shooting-star {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow:
+                0 0 10px white,
+                0 0 20px white;
+            z-index: -1;
+            animation: shooting 5s linear infinite;
+        }
+
+        .shooting-star::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 4px;
+            background: #FF1493;
+            right: 5px;
+            top: 4px;
+            border-radius: 50%;
+            transform-origin: right center;
+        }
+
+        .star1 {
+            top: 5%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .star2 {
+            top: 15%;
+            left: 40%;
+            animation-delay: 2s;
+        }
+
+        .star3 {
+            top: 0%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        @keyframes shooting {
+            0% {
+                transform: translate(0, 0) rotate(45deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(500px, 500px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           เมนูด้านขวา
+        ========================= */
+
+        .navigation {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            font-family: "Itim", cursive;
+            font-size: 18px;
+            color: #ffffff;
+            background: rgba(235, 167, 177, 0.9);
+            border: 3px solid #ffffff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 20, 147, 0.25);
+            white-space: nowrap;
+        }
+
+        .nav-button:hover,
+        .nav-button.active {
+            background: #FF1493;
+            transform: translateX(-5px);
+            box-shadow:
+                0 0 10px #ffffff,
+                0 0 20px rgba(255, 20, 147, 0.6);
+        }
+
+        /* =========================
+           Section
+        ========================= */
+
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding: 60px 170px 60px 50px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .section.active {
+            display: flex;
+        }
+
+        /* =========================
+           หน้าแรก Portfolio
+        ========================= */
+
+        #home {
+            text-align: center;
+        }
+
+        #home h1 {
+            font-family: "Itim", cursive;
+            font-size: clamp(55px, 8vw, 100px);
+            color: #ffffff;
+            margin-bottom: 35px;
+            text-shadow: 3px 3px 0 #FF1493;
+        }
+
+        /* รูป Portfolio สี่เหลี่ยมด้านเท่า */
+
+        .portfolio-image {
+            width: 330px;
+            height: 330px;
+
+            /* ทำให้เป็นสี่เหลี่ยมจัตุรัส */
+            aspect-ratio: 1 / 1;
+
+            object-fit: cover;
+            object-position: center;
+
+            display: block;
+            margin: 0 auto 35px;
+
+            border: 7px solid #ffffff;
+            border-radius: 15px;
+
+            box-shadow:
+                0 0 0 5px #FF1493,
+                0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .home-info {
+            background: rgba(235, 167, 177, 0.92);
+            border: 3px solid #ffffff;
+            border-radius: 20px;
+            padding: 25px 40px;
+            max-width: 700px;
+            width: 90%;
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .home-info p {
+            font-size: 21px;
+            line-height: 2;
+            color: #ffffff;
+        }
+
+        .home-info strong {
+            color: #ffffff;
+        }
+
+        /* =========================
+           หัวข้อแต่ละหน้า
+        ========================= */
+
+        .section h2 {
+            font-family: "Itim", cursive;
+            font-size: 55px;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 35px;
+            text-shadow: 3px 3px 0 #FF1493;
+        }
+
+        /* =========================
+           กล่องเนื้อหา
+        ========================= */
+
+        .content-box {
+            width: min(900px, 90%);
+            background: rgba(235, 167, 177, 0.94);
+            border: 3px solid #ffffff;
+            border-radius: 20px;
+            padding: 35px 45px;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.3);
+        }
+
+        .content-box h3 {
+            font-family: "Itim", cursive;
+            color: #ffffff;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .content-box p {
+            color: #ffffff;
+            font-size: 19px;
+            line-height: 2;
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           ผลงานและกิจกรรม
+        ========================= */
+
+        .activities-container {
+            width: min(1000px, 92%);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .activity {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            background: rgba(235, 167, 177, 0.94);
+            border: 3px solid #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.25);
+        }
+
+        /* รูปกิจกรรมเป็นสี่เหลี่ยมด้านเท่า */
+
+        .activity img {
+            width: 220px;
+            height: 220px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+
+            flex-shrink: 0;
+
+            border: 5px solid #ffffff;
+            border-radius: 12px;
+
+            box-shadow: 0 0 0 3px #FF1493;
+        }
+
+        .activity-text {
+            flex: 1;
+        }
+
+        .activity-text h3 {
+            font-family: "Itim", cursive;
+            font-size: 27px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .activity-text p {
+            color: #ffffff;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           ช่องทางการติดต่อ
+        ========================= */
+
+        .contact-item {
+            margin: 18px 0;
+            padding: 15px 20px;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            background: rgba(255, 20, 147, 0.3);
+        }
+
+        .contact-item p {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        /* =========================
+           Responsive สำหรับมือถือ
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .navigation {
+                top: auto;
+                bottom: 10px;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 95%;
+                gap: 6px;
+            }
+
+            .nav-button {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+
+            .section {
+                padding: 40px 20px 120px;
+            }
+
+            #home h1 {
+                font-size: 55px;
+            }
+
+            .portfolio-image {
+                width: 270px;
+                height: 270px;
+            }
+
+            .section h2 {
+                font-size: 42px;
+            }
+
+            .content-box {
+                padding: 25px 20px;
+            }
+
+            .activity {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .activity img {
+                width: 230px;
+                height: 230px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="page">
-
-    <!-- =========================
-         หัวใจพื้นหลัง
-    ========================== -->
-    <div class="heart h1">♡</div>
-    <div class="heart h2">♥</div>
-    <div class="heart h3">♡</div>
-    <div class="heart h4">♥</div>
-    <div class="heart h5">♡</div>
-
     <!-- ดาวตก -->
-    <div class="shooting-star"></div>
+    <div class="shooting-star star1"></div>
+    <div class="shooting-star star2"></div>
+    <div class="shooting-star star3"></div>
 
     <!-- =========================
-         เมนูด้านขวา
-    ========================== -->
-    <nav class="navbar">
+         เมนู
+    ========================= -->
 
-        <button class="nav-btn active"
+    <nav class="navigation">
+
+        <button class="nav-button active"
                 onclick="showPage('home', this)">
-            1. หน้าหลัก
+            Portfolio
         </button>
 
-        <button class="nav-btn"
-                onclick="showPage('intro', this)">
-            2. คำนำ
+        <button class="nav-button"
+                onclick="showPage('introduction', this)">
+            1. คำนำ
         </button>
 
-        <button class="nav-btn"
+        <button class="nav-button"
                 onclick="showPage('profile', this)">
-            3. ประวัติส่วนตัว
+            2. ประวัติส่วนตัว
         </button>
 
-        <button class="nav-btn"
+        <button class="nav-button"
                 onclick="showPage('activities', this)">
-            4. ผลงานและกิจกรรม
+            3. ผลงานและกิจกรรม
         </button>
 
-        <button class="nav-btn"
+        <button class="nav-button"
                 onclick="showPage('contact', this)">
-            5. ติดต่อ
+            4. ช่องทางการติดต่อ
         </button>
 
     </nav>
 
 
-    <main class="content">
+    <!-- =========================
+         หน้า Portfolio
+    ========================= -->
 
-        <!-- =========================
-             หน้าแรก
-        ========================== -->
-        <section id="home" class="section active">
+    <section id="home" class="section active">
 
-            <h1 class="main-title">
-                My Portfolio
-            </h1>
+        <h1>My Portfolio</h1>
 
-            <!-- ใส่รูป Portfolio ตรงนี้ -->
-            <img
-                src="images/profile.jpg"
-                alt="รูป Portfolio"
-                class="profile-image"
-            >
+        <!-- รูป Portfolio สี่เหลี่ยมด้านเท่า -->
+        <img
+            src="images/portfolio.jpg"
+            alt="รูป Portfolio ของสุริวิภา พัดทอง"
+            class="portfolio-image"
+        >
 
-            <div class="profile-info">
+        <div class="home-info">
 
-                <div class="name">
-                    ชื่อ-นามสกุล สุริวิภา พัดทอง
-                </div>
+            <p>
+                <strong>ชื่อ-นามสกุล</strong>
+                สุริวิภา พัดทอง
+            </p>
 
-                <div class="english">
-                    Name Surivipa Padthong
-                </div>
+            <p>
+                <strong>Name</strong>
+                Surivipa Padthong
+            </p>
 
-                <div class="nickname">
-                    ชื่อเล่น เปรี้ยว
-                </div>
+            <p>
+                <strong>ชื่อเล่น</strong>
+                เปรี้ยว
+            </p>
 
-                <div class="nickname-en">
-                    Nickname Preaw
-                </div>
+            <p>
+                <strong>Nickname</strong>
+                Preaw
+            </p>
 
-                <div class="class">
-                    ระดับชั้น มัธยมศึกษาชั้นปีที่ 6/3
-                </div>
+            <p>
+                <strong>ระดับชั้น</strong>
+                มัธยมศึกษาชั้นปีที่ 6/3
+            </p>
 
-            </div>
+        </div>
 
-        </section>
-
-
-        <!-- =========================
-             หน้าคำนำ
-        ========================== -->
-        <section id="intro" class="section">
-
-            <h1 class="page-title">
-                คำนำ
-            </h1>
-
-            <div class="card intro-box">
-
-                <p>
-                    แฟ้มสะสมผลงาน (Portfolio) เล่มนี้
-                    จัดทำขึ้นเพื่อเป็นตัวแทนในการนำเสนอข้อมูลเกี่ยวกับ
-                    ประวัติส่วนตัว ความรู้ ความสามารถ ทักษะ
-                    และกิจกรรมต่างๆ ของข้าพเจ้า
-                    โดยเฉพาะความสนใจและความมุ่งมั่นที่มีต่อการศึกษาต่อ
-                    ภายในแฟ้มสะสมผลงานเล่มนี้ ประกอบด้วยประวัติส่วนตัว
-                    ผลการเรียน กิจกรรมที่ข้าพเจ้าได้เข้าร่วม
-                </p>
-
-            </div>
-
-        </section>
+    </section>
 
 
-        <!-- =========================
-             หน้าประวัติส่วนตัว
-        ========================== -->
-        <section id="profile" class="section">
+    <!-- =========================
+         คำนำ
+    ========================= -->
 
-            <h1 class="page-title">
-                ประวัติส่วนตัว
-            </h1>
+    <section id="introduction" class="section">
 
-            <div class="card personal-info">
+        <h2>คำนำ</h2>
 
-                <h2>ประวัติส่วนตัว</h2>
+        <div class="content-box">
 
-                <p>
-                    <strong>ชื่อ-นามสกุล</strong> สุริวิภา พัดทอง
-                </p>
+            <p>
+                แฟ้มสะสมผลงาน (Portfolio) เล่มนี้
+                จัดทำขึ้นเพื่อเป็นตัวแทนในการนำเสนอข้อมูลเกี่ยวกับประวัติส่วนตัว
+                ความรู้ ความสามารถ ทักษะ และกิจกรรมต่างๆ ของข้าพเจ้า
+                โดยเฉพาะความสนใจและความมุ่งมั่นที่มีต่อการศึกษาต่อ
+                ภายในแฟ้มสะสมผลงานเล่มนี้ ประกอบด้วยประวัติส่วนตัว
+                ผลการเรียน กิจกรรมที่ข้าพเจ้าได้เข้าร่วม
+            </p>
 
-                <p>
-                    <strong>Name</strong> Surivipa Padthong
-                </p>
+        </div>
 
-                <p>
-                    <strong>ชื่อเล่น</strong> เปรี้ยว
-                </p>
-
-                <p>
-                    <strong>Nickname</strong> Preaw
-                </p>
-
-                <p>
-                    <strong>อายุ</strong> 17 ปี
-                </p>
-
-                <p>
-                    <strong>Age</strong> 17 years old
-                </p>
-
-                <p>
-                    <strong>วันเกิด</strong> 13/05/09
-                </p>
-
-                <p>
-                    <strong>สัญชาติ</strong> ไทย
-                </p>
-
-                <p>
-                    <strong>เชื้อชาติ</strong> ไทย
-                </p>
-
-                <p>
-                    <strong>ศาสนา</strong> พุทธ
-                </p>
-
-                <p>
-                    <strong>ประวัติการศึกษา</strong>
-                </p>
-
-                <p>
-                    สถานศึกษา โรงเรียนบ้านบึง
-                    "อุตสาหกรรมนุเคราะห์"
-                </p>
-
-                <p>
-                    <strong>แผนการเรียน</strong>
-                    วิทยาศาสตร์-คณิตศาสตร์ (MSEP)
-                </p>
-
-                <p>
-                    <strong>
-                        คณะ-สาขาและมหาวิทยาลัยที่สนใจศึกษาต่อ
-                    </strong>
-                </p>
-
-                <p>
-                    คณะนิเทศศาสตร์
-                    สาขาศิลปะภาพยนตร์
-                    จุฬาลงกรณ์มหาวิทยาลัย
-                </p>
-
-            </div>
-
-        </section>
+    </section>
 
 
-        <!-- =========================
-             ผลงานและกิจกรรม
-        ========================== -->
-        <section id="activities" class="section">
+    <!-- =========================
+         ประวัติส่วนตัว
+    ========================= -->
 
-            <h1 class="page-title">
-                ผลงานและกิจกรรม
-            </h1>
+    <section id="profile" class="section">
 
-            <div class="activities">
+        <h2>ประวัติส่วนตัว</h2>
 
-                <!-- กิจกรรม 1 -->
-                <div class="activity-card">
+        <div class="content-box">
 
-                    <img
-                        src="images/activity1.jpg"
-                        alt="กิจกรรมค่ายพี่สอนน้อง"
-                    >
+            <h3>ประวัติส่วนตัว</h3>
+
+            <p>
+                <strong>ชื่อ-นามสกุล :</strong>
+                สุริวิภา พัดทอง
+            </p>
+
+            <p>
+                <strong>Name :</strong>
+                Surivipa Padthong
+            </p>
+
+            <p>
+                <strong>ชื่อเล่น :</strong>
+                เปรี้ยว
+            </p>
+
+            <p>
+                <strong>Nickname :</strong>
+                Preaw
+            </p>
+
+            <p>
+                <strong>อายุ :</strong>
+                17 ปี
+            </p>
+
+            <p>
+                <strong>Age :</strong>
+                17 years old
+            </p>
+
+            <p>
+                <strong>วันเกิด :</strong>
+                13/05/09
+            </p>
+
+            <p>
+                <strong>สัญชาติ :</strong>
+                ไทย
+            </p>
+
+            <p>
+                <strong>เชื้อชาติ :</strong>
+                ไทย
+            </p>
+
+            <p>
+                <strong>ศาสนา :</strong>
+                พุทธ
+            </p>
+
+            <p>
+                <strong>ประวัติการศึกษา :</strong>
+                สถานศึกษา โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"
+            </p>
+
+            <p>
+                <strong>แผนการเรียน :</strong>
+                วิทยาศาสตร์-คณิตศาสตร์ (MSEP)
+            </p>
+
+            <p>
+                <strong>
+                    คณะ-สาขาและมหาวิทยาลัยที่สนใจศึกษาต่อ :
+                </strong>
+                คณะนิเทศศาสตร์ สาขาศิลปะภาพยนตร์
+                มหาวิทยาลัยจุฬาลงกรณ์มหาวิทยาลัย
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ผลงานและกิจกรรม
+    ========================= -->
+
+    <section id="activities" class="section">
+
+        <h2>ผลงานและกิจกรรม</h2>
+
+        <div class="activities-container">
+
+
+            <!-- กิจกรรมที่ 1 -->
+
+            <div class="activity">
+
+                <img
+                    src="images/work1.jpg"
+                    alt="กิจกรรมที่ 1"
+                >
+
+                <div class="activity-text">
 
                     <h3>
-                        เข้าร่วมกิจกรรมค่ายพี่สอนน้อง
-                        โรงเรียนบ้านห้วยมะไฟ
+                        เข้าร่วมกิจกรรมค่ายพี่สอนน้องโรงเรียนบ้านห้วยมะไฟ
                         ตามโครงการห้องเรียนพิเศษ MSEP
                     </h3>
 
                     <p>
                         <strong>สิ่งที่ได้จากกิจกรรมนี้ :</strong>
                         ได้เรียนรู้การสื่อสารเพื่อสอนให้เด็กๆ เข้าใจ
-                        ได้ฝึกทักษะการพูด และภาวะการเป็นผู้นำ
-                        ในการจัดกิจกรรมในค่าย
+                        ได้ฝึกทักษะการพูด และภาวะการเป็นผู้นำในการจัดกิจกรรมในค่าย
                     </p>
 
                 </div>
 
+            </div>
 
-                <!-- กิจกรรม 2 -->
-                <div class="activity-card">
 
-                    <img
-                        src="images/activity2.jpg"
-                        alt="การปฐมพยาบาลฉุกเฉิน"
-                    >
+            <!-- กิจกรรมที่ 2 -->
+
+            <div class="activity">
+
+                <img
+                    src="images/work2.jpg"
+                    alt="กิจกรรมที่ 2"
+                >
+
+                <div class="activity-text">
 
                     <h3>
                         ผ่านการอบรมเชิงปฏิบัติการ
-                        ในหัวข้อ การปฐมพยาบาลฉุกเฉิน
-                        และการกู้ชีพขั้นพื้นฐาน
+                        ในหัวข้อ การปฐมพยาบาลฉุกเฉินและการกู้ชีพขั้นพื้นฐาน
                     </h3>
 
                     <p>
                         <strong>สิ่งที่ได้จากกิจกรรมนี้ :</strong>
-                        ได้ความรู้การปฐมพยาบาลฉุกเฉิน
-                        และการกู้ชีพขั้นพื้นฐาน
-                        ได้รับรู้วิธีการที่จะตัดสินใจ
-                        ในสถานการณ์เร่งด่วน
+                        ได้ความรู้การปฐมพยาบาลฉุกเฉินและการกู้ชีพขั้นพื้นฐาน
+                        ได้รับรู้วิธีการที่จะตัดสินใจในสถานการณ์เร่งด่วน
                     </p>
 
                 </div>
 
+            </div>
 
-                <!-- กิจกรรม 3 -->
-                <div class="activity-card">
 
-                    <img
-                        src="images/activity3.jpg"
-                        alt="การแข่งขันตอบปัญหาทางวิทยาศาสตร์"
-                    >
+            <!-- กิจกรรมที่ 3 -->
+
+            <div class="activity">
+
+                <img
+                    src="images/work3.jpg"
+                    alt="กิจกรรมที่ 3"
+                >
+
+                <div class="activity-text">
 
                     <h3>
                         ได้รับรางวัลชนะเลิศ
-                        การแข่งขันตอบปัญหาทางวิทยาศาสตร์
-                        ในสัปดาห์วิทยาศาสตร์
+                        การแข่งขันตอบปัญหาทางวิทยาศาสตร์ในสัปดาห์วิทยาศาสตร์
                     </h3>
 
                     <p>
                         <strong>สิ่งที่ได้จากกิจกรรมนี้ :</strong>
-                        ได้พัฒนาทักษะการแข่งขันทั้งการแข่งขันกับตนเอง
-                        และผู้อื่น ได้เรียนรู้การทำข้อสอบ
-                        ในสภาวะกดดัน
+                        ได้พัฒนาทักษะการแข่งขันทั้งการแข่งขันกับตนเองและผู้อื่น
+                        ได้เรียนรู้การทำข้อสอบในสภาวะกดดัน
                     </p>
 
                 </div>
 
+            </div>
 
-                <!-- กิจกรรม 4 -->
-                <div class="activity-card">
 
-                    <img
-                        src="images/activity4.jpg"
-                        alt="การแข่งขันคิดเลขเร็ว"
-                    >
+            <!-- กิจกรรมที่ 4 -->
+
+            <div class="activity">
+
+                <img
+                    src="images/work4.jpg"
+                    alt="กิจกรรมที่ 4"
+                >
+
+                <div class="activity-text">
 
                     <h3>
-                        ได้รับรางวัลชนะเลิศ
-                        การแข่งขันคิดเลขเร็ว
+                        ได้รับรางวัลชนะเลิศการแข่งขันคิดเลขเร็ว
                         เนื่องในสัปดาห์คณิตศาสตร์
                     </h3>
 
                     <p>
                         <strong>สิ่งที่ได้จากกิจกรรมนี้ :</strong>
-                        ได้นำความรู้ทางคณิตศาสตร์ เช่น
-                        แฟกทอเรียล ซิกมา มาใช้ในการแข่งขัน
-                        และได้ฝึกทักษะความคิดภายใต้เวลาที่กดดัน
+                        ได้นำความรู้ทางคณิตศาสตร์ เช่น แฟกทอเรียล ซิกมา
+                        มาใช้ในการแข่งขัน และได้ฝึกทักษะความคิดภายใต้เวลาที่กดดัน
                     </p>
 
                 </div>
 
+            </div>
 
-                <!-- กิจกรรม 5 -->
-                <div class="activity-card">
 
-                    <img
-                        src="images/activity5.jpg"
-                        alt="BUU MOOC"
-                    >
+            <!-- กิจกรรมที่ 5 -->
+
+            <div class="activity">
+
+                <img
+                    src="images/work5.jpg"
+                    alt="กิจกรรมที่ 5"
+                >
+
+                <div class="activity-text">
 
                     <h3>
                         ได้รับเกียรติบัตรจากการเรียน BUU MOOC
@@ -883,20 +759,24 @@ body {
                         <strong>สิ่งที่ได้จากกิจกรรมนี้ :</strong>
                         ได้ความรู้วิชาทฤษฎีดนตรีสากล
                         เข้าใจการใช้ตัวโน้ต
-                        และสามารถนำมาประยุกต์ใช้
-                        ในการเล่นดนตรีในชีวิตประจำวันได้
+                        และสามารถนำมาประยุกต์ใช้ในการเล่นดนตรีในชีวิตประจำวันได้
                     </p>
 
                 </div>
 
+            </div>
 
-                <!-- กิจกรรม 6 -->
-                <div class="activity-card">
 
-                    <img
-                        src="images/activity6.jpg"
-                        alt="ค่ายนิเทศ Creative Production"
-                    >
+            <!-- กิจกรรมที่ 6 -->
+
+            <div class="activity">
+
+                <img
+                    src="images/work6.jpg"
+                    alt="กิจกรรมที่ 6"
+                >
+
+                <div class="activity-text">
 
                     <h3>
                         เข้าร่วมการอบรมเชิงปฏิบัติการค่าย
@@ -905,8 +785,7 @@ body {
 
                     <p>
                         <strong>สิ่งที่ได้จากกิจกรรมนี้ :</strong>
-                        ได้เรียนรู้การใช้กล้อง การจัดแสง
-                        และเทคนิคการถ่ายภาพ
+                        ได้เรียนรู้การใช้กล้อง การจัดแสง และเทคนิคการถ่ายภาพ
                         เรียนรู้การแสดง และการจัดรายการสด
                         ได้ใช้ความคิดสร้างสรรค์เพื่อสร้างสื่อ
                     </p>
@@ -915,91 +794,92 @@ body {
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- =========================
-             ช่องทางการติดต่อ
-        ========================== -->
-        <section id="contact" class="section">
+    <!-- =========================
+         ช่องทางการติดต่อ
+    ========================= -->
 
-            <h1 class="page-title">
-                ช่องทางการติดต่อ
-            </h1>
+    <section id="contact" class="section">
 
-            <div class="card contact-card">
+        <h2>ช่องทางการติดต่อ</h2>
 
-                <div class="contact-item">
-                    <span class="contact-icon">✉</span>
-                    <span>
-                        Gmail : suriwipa.0315@gmail.com
-                    </span>
-                </div>
+        <div class="content-box">
 
-                <div class="contact-item">
-                    <span class="contact-icon">☎</span>
-                    <span>
-                        Tel : 081-459-3691
-                    </span>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">♡</span>
-                    <span>
-                        IG : tppwrsp
-                    </span>
-                </div>
-
+            <div class="contact-item">
+                <p>
+                    📧 Gmail :
+                    suriwipa.0315@gmail.com
+                </p>
             </div>
 
-        </section>
+            <div class="contact-item">
+                <p>
+                    📞 Tel :
+                    081-459-3691
+                </p>
+            </div>
 
-    </main>
+            <div class="contact-item">
+                <p>
+                    📷 IG :
+                    tppwrsp
+                </p>
+            </div>
 
-</div>
+        </div>
+
+    </section>
 
 
-<script>
+    <!-- =========================
+         JavaScript เปลี่ยนหน้า
+    ========================= -->
 
-/* =========================
-   ระบบเปลี่ยนหน้า
-========================= */
+    <script>
 
-function showPage(pageId, button) {
+        function showPage(pageId, button) {
 
-    // ซ่อนทุกหน้า
-    const sections = document.querySelectorAll(".section");
+            // ซ่อนทุกหน้า
+            const sections =
+                document.querySelectorAll(".section");
 
-    sections.forEach(function(section) {
-        section.classList.remove("active");
-    });
+            sections.forEach(function(section) {
+                section.classList.remove("active");
+            });
 
-    // แสดงหน้าที่เลือก
-    const selectedPage = document.getElementById(pageId);
 
-    if (selectedPage) {
-        selectedPage.classList.add("active");
-    }
+            // แสดงหน้าที่เลือก
+            const selectedPage =
+                document.getElementById(pageId);
 
-    // ลบ active จากปุ่มทั้งหมด
-    const buttons = document.querySelectorAll(".nav-btn");
+            selectedPage.classList.add("active");
 
-    buttons.forEach(function(btn) {
-        btn.classList.remove("active");
-    });
 
-    // เพิ่ม active ให้ปุ่มที่กด
-    button.classList.add("active");
+            // ลบสถานะ active จากปุ่มทั้งหมด
+            const buttons =
+                document.querySelectorAll(".nav-button");
 
-    // เลื่อนกลับขึ้นด้านบน
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
+            buttons.forEach(function(btn) {
+                btn.classList.remove("active");
+            });
 
-</script>
+
+            // เพิ่มสถานะ active ให้ปุ่มที่กด
+            button.classList.add("active");
+
+
+            // เลื่อนกลับขึ้นด้านบน
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+    </script>
 
 </body>
 </html>
-```
